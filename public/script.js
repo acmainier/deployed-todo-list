@@ -12,7 +12,37 @@ const fetchData = async () => {
     taskList.innerHTML = ""; // Clear the list before rendering
     data.forEach((item) => {
       const li = document.createElement("li");
-      li.textContent = item.id + ": " + item.title + " - " + item.content;
+      li.classList.add("task-item");
+      li.textContent = item.title + " - " + item.content;
+
+      // Create a delete button for each item
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.classList.add("delete-btn");
+      deleteBtn.addEventListener("click", async () => {
+        await fetch(`/api/notes/${item.id}`, { method: "DELETE" });
+        fetchData();
+      });
+
+      // Create an edit button for each item
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Edit";
+      editBtn.classList.add("edit-btn");
+      editBtn.addEventListener("click", async () => {
+        const newTitle = prompt("Enter new title:", item.title);
+        const newContent = prompt("Enter new content:", item.content);
+        if (newTitle && newContent) {
+          await fetch(`/api/notes/${item.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title: newTitle, content: newContent }),
+          });
+          fetchData();
+        }
+      });
+
+      li.append(editBtn, deleteBtn);
+
       taskList.appendChild(li);
     });
   } catch (error) {
