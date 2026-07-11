@@ -55,7 +55,8 @@ h1 {
   transition: border-color 0.2s;
 }
 
-#task-input:focus {
+#task-title:focus,
+#task-content:focus {
   border-color: #1a9e96;
 }
 
@@ -137,22 +138,4 @@ h1 {
 
 .delete-btn:hover {
   background-color: #e8a09a;
-}
-
-.task-item input.edit-input {
-  flex: 1;
-  padding: 0.2rem 0.5rem;
-  border: 2px solid #1a9e96;
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: #fffdf7;
-  outline: none;
-}
-
-/* --- Task Error message --- */
-
-.task-error {
-  flex-basis: 100%;
-  color: #c0392b;
-  font-size: 0.875rem;
 }
