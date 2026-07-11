@@ -1,4 +1,4 @@
-# Portfolio Project
+# Deployed ToDoList Project
 
 This is a deployed version of my ToDoList project, as a submission to the challenge Week 7 of the skills Bootcamp in Full Stack Web Development, organized by Step8Up Ltd.
 
